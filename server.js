@@ -5,7 +5,9 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 dotenv.config();
 global.Task = require("./api/models/taskModel");
+global.Task = require("./api/models/boardModel");
 const routes = require("./api/routes/taskRoutes");
+const boardroutes = require("./api/routes/boardRoutes");
 
 mongoose.Promise = global.Promise;
 mongoose.set("useFindAndModify", false);
@@ -30,6 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 routes(app);
+boardroutes(app);
 app.listen(port);
 
 app.use((req, res) => {
