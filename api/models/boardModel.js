@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const autoIncrement = require("mongoose-auto-increment");
 const { Schema } = mongoose;
-autoIncrement.initialize(mongoose);
 
 const boardSchema = new Schema(
   {
@@ -29,6 +28,8 @@ const boardSchema = new Schema(
   },
   { collection: "board" }
 );
+
+autoIncrement.initialize(mongoose.connection);
 
 boardSchema.plugin(autoIncrement.plugin, {
   model: "board",
