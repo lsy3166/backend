@@ -2,10 +2,12 @@ const mongoose = require("mongoose");
 const board = mongoose.model("board");
 
 exports.list_all_boards = (req, res) => {
-  board.find({}, (err, boards) => {
-    if (err) res.send(err);
-    res.json(boards);
-  });
+  board
+    .find({}, (err, boards) => {
+      if (err) res.send(err);
+      res.json(boards);
+    })
+    .sort({ _id: -1 });
 };
 
 exports.create_a_board = (req, res) => {
